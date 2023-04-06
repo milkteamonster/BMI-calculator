@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Jxz">
+  <title>BMI Calculator</title>
+  <style>
+    *{margin: 0; padding: 0;}
+    .calculator{
+      width: 600px;
+      margin: auto;
+      background-color: antiquewhite;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+    .fields div{
+      white-space: nowrap;
+    }
+    .fields h1, .fields h2{
+      font-weight: 300;
+    }
+    .fields h1{
+      font-size: 40px;
+    }
+    .fields h2{
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+    .fields input{
+      margin-bottom: 20px;
+      height: 30px;
+      margin: 10px 5px;
+      border: 2px solid #afabab;
+      border-radius: 5px;
+      outline: none;
+    }
+    .result{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .result input[type="submit"]{
+      width: fit-content;
+      height: 50px;
+      cursor: pointer;
+      line-height: 5px;
+      font-size: 25px;
+      font-weight: 100;
+      transition: .5s;
+      box-shadow: 0 0 10px rgba(193, 165, 108, 0.3);
+      margin-top: 20px;
+      border-radius: 5px;
+      border: 2px solid #afabab;
+      padding: 0 20px;
+    }
+    .result input[type="submit"]:hover{
+      background-color: rgb(152, 125, 71);
+      color: #fff;
+    }
+    .result p{
+      font-size: 70px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+ <section class="calculator">
+  <section class="fields">
+    <h1>BMI Calculator</h1>
+    <h2>lets workout together!</h2>
+    <div>
+      <label for="bodyHeight">Height</label>
+      <input type="number" id="bofyHeight" min="0">cm
+    </div>
+    <div>
+      <label for="bodyWeight">Weight</label>
+      <input type="number" id="bofyWeight" min="0">kg
+    </div>
+  </section>
+  <section class="result">
+    <input type="submit" value="Calculate Result" onclick="calculateBMI();">
+    <p id="resultText">0</p>
+  </section>
+ </section>
+
+
+<script>
+
+  function calculateBMI(){
+    var height = document.querySelector("#bofyHeight").value;//要的是裡面的值所以.value
+    var weight = document.querySelector("#bofyWeight").value;
+    var result = document.querySelector("#resultText");
+    
+    // var calculateBMI = weight / height;
+    // console.log(bmi(height, weight));
+    if((height !="") && (weight !="")){
+      result.innerHTML = bmi(height, weight);
+    } else {
+      alert("please input height and weight.")
+    }
+  }
+  function bmi(height, weight){
+    var w = parseInt(weight);
+    var h = parseInt(height) / 100; //除100是因為剛剛單位是輸入cm, 但BMI的公式是以公尺計算
+    return (w / (h * h)).toFixed(2);// (2)是取到小數點第二位
+  }
+
+</script>
+</body>
+</html>
+
